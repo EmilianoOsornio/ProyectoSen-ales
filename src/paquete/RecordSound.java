@@ -88,7 +88,7 @@ public class RecordSound {
     /**
      * Entry to run the program
      */
-    public static void main(String[] args) {
+    public static double[] mainRecord() {
         Scanner sc= new Scanner(System.in);
         boolean recording=false;
         String grabar;
@@ -119,12 +119,7 @@ public class RecordSound {
         System.out.println("Leyendo el archivo generado...");
         ReadSound rs= new ReadSound();
         //Recuperamos el archivo wave en un arreglo
-        double[] data = rs.read("Grabacion.wav");
-        //Creamos una grabación con el nuevo arreglo
-        rs.save("NuevaGrabacion.wav", data);
-        System.out.println(data.length);
-        for(int i=0;i<data.length;i++){
-            System.out.println(data[i]);
-        }
+        double[] data = rs.read("Grabacion.wav");                
+        return data;
     }
 }

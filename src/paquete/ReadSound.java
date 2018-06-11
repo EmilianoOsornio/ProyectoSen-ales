@@ -5,9 +5,12 @@
  */
 package paquete;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
@@ -100,5 +103,25 @@ public class ReadSound {
         catch (IOException ioe) {
             throw new IllegalArgumentException("unable to save file '" + filename + "'", ioe);
         }
+    }
+    
+    // play sound file using Applet.newAudioClip();
+    public static void play(String filename) {
+        URL url = null;
+        try {
+            File file = new File(filename);
+            if (file.canRead()) url = file.toURI().toURL();
+        }
+        catch (MalformedURLException e) {
+            throw new IllegalArgumentException("could not play '" + filename + "'", e);
+        }
+
+        // URL url = StdAudio.class.getResource(filename);
+        if (url == null) {
+            throw new IllegalArgumentException("could not play '" + filename + "'");
+        }
+
+        AudioClip clip = Applet.newAudioClip(url);
+        clip.play();
     }
 }
