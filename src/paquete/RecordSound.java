@@ -13,6 +13,7 @@ import javax.sound.sampled.*;
 import java.io.*;
 import java.util.Scanner;
 import java.io.File;
+import java.net.URL;
 
  
 public class RecordSound {
@@ -32,11 +33,11 @@ public class RecordSound {
      * Defines an audio format
      */
     AudioFormat getAudioFormat() {
-        float sampleRate = 16000;
-        int sampleSizeInBits = 8;
-        int channels = 2;
+        float sampleRate = 44100;
+        int sampleSizeInBits = 16;
+        int channels = 1;
         boolean signed = true;
-        boolean bigEndian = true;
+        boolean bigEndian = false;
         AudioFormat format = new AudioFormat(sampleRate, sampleSizeInBits,
                                              channels, signed, bigEndian);
         return format;
@@ -112,6 +113,18 @@ public class RecordSound {
         
         stopper.start();
         // start recording
-        recorder.start();        
+        recorder.start();
+        
+        //Ahora leemos el archivo de audio generado
+        System.out.println("Leyendo el archivo generado...");
+        ReadSound rs= new ReadSound();
+        //Recuperamos el archivo wave en un arreglo
+        double[] data = rs.read("Grabacion.wav");
+        //Creamos una grabación con el nuevo arreglo
+        rs.save("NuevaGrabacion.wav", data);
+        System.out.println(data.length);
+        for(int i=0;i<data.length;i++){
+            System.out.println(data[i]);
+        }
     }
 }
