@@ -11,6 +11,7 @@ package paquete;
  */
 public class OperacionesBasicas {
     ReadSound rs=new ReadSound();
+    
         
     public double[] amplificacion(double[] data, int k){
         double[] data2 = new double[data.length];
@@ -28,6 +29,39 @@ public class OperacionesBasicas {
         }
         System.out.println("SE ATENUO EL SONIDO");
         return data2;
+    }
+    
+    public double[] desplazamiento(double[] data, int s, int tiempoGrabacion){
+        double copyData[];
+        System.out.println("TIEMPO G "+tiempoGrabacion);
+        System.out.println("S "+s);
+        if(tiempoGrabacion>= s){
+            int muestrasporSeg = data.length/tiempoGrabacion;
+            int tamMuestras = muestrasporSeg*Math.abs(s);
+            System.out.println("TAM MUESTRAS "+data.length);
+            System.out.println("MUESTRAS POR SEGUNDO "+muestrasporSeg);
+            System.out.println("TAM NUEVA MUESTRA "+tamMuestras);
+            if(s>0){
+                copyData = new double[tamMuestras];
+                for (int i = 0; i < tamMuestras; i++) {
+                    copyData[i] = data[i];
+                }
+            }else{
+                copyData = new double[data.length];
+                for (int i = 0; i < data.length; i++) {
+                    if(i<tamMuestras){
+                        copyData[i] = 0;
+                    }else{
+                        copyData[i] = data[i];
+                    }
+                }
+            }
+            return copyData;
+        }else{
+            System.out.println("No es posible ");
+            return data;
+        }
+   
     }
     
     public double[] reflejo(double[] data){

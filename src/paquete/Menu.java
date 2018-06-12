@@ -14,9 +14,11 @@ import java.util.Scanner;
 public class Menu {
     public static void main(String [] args){
         int opc=1;
+        int tiempoGrabacion;
         Scanner sc=new Scanner(System.in);
         RecordSound rcs=new RecordSound();
         ReadSound rds=new ReadSound();
+        //tiempoGrabacion = rcs.
         OperacionesBasicas ob= new OperacionesBasicas();
         //Grabacion original
         double[] data=rcs.mainRecord();
@@ -50,7 +52,11 @@ public class Menu {
                             k=sc.nextInt();
                             datan=ob.atenuacion(data,k);
                 break;
-                case 3: 
+                case 3:     System.out.println("Ingresa los segundos a desplazar");
+                            k=sc.nextInt();
+                            System.out.println("Ingresa el total de segundos de la grabacion");
+                            int t=sc.nextInt();
+                            datan=ob.desplazamiento(data,k,t);
                 break;
                 case 4:     datan=ob.reflejo(data);
                 break;
