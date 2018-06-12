@@ -60,7 +60,9 @@ public class Menu {
                 break;
                 case 4:     datan=ob.reflejo(data);
                 break;
-                case 5: 
+                case 5:     System.out.println("Ingresa el factor k");
+                            k=sc.nextInt();
+                            datan=ob.diezmacion(data,k);
                 break;
                 case 6: 
                 break;

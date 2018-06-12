@@ -73,6 +73,25 @@ public class OperacionesBasicas {
         return data2;
     }
     
+    public double[] diezmacion(double[] data, int k){
+        int nuevoTam = (data.length%k==0)?data.length/k:(data.length/k)+k;
+        double copyData [] = new double[nuevoTam];
+        System.out.println("ORIGINAL TAM "+data.length);
+        System.out.println("NUEVO TAM "+nuevoTam);
+        int j =  0;
+        
+        for (int i = 0; i < data.length; i++) {
+            if(i%k==0){
+               
+                copyData[j] = data[i];
+                 j++;
+            }
+        }
+        System.out.println("Recorrido "+j);
+        
+        return copyData;
+    }
+    
     public void nuevaGrabacion(double[] grabacion){
         //Creamos una grabación con el nuevo arreglo
         rs.save("NuevaGrabacion.wav", grabacion);
