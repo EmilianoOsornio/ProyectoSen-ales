@@ -35,7 +35,8 @@ public class Menu {
             System.out.println("4.Reflejo");
             System.out.println("5.Diezmacion");
             System.out.println("6.Interpolacion");
-            System.out.println("7.Reproducir Resultado");
+            System.out.println("7.Reproducir Entrada");
+            System.out.println("8.Reproducir Salida");
             System.out.println("0.Salir");
             System.out.println("********************************");
             System.out.println("********************************");
@@ -66,14 +67,15 @@ public class Menu {
                 break;
                 case 6: 
                 break;
-                case 7:     if(datan == null){
+                case 7:     rds.play("Grabacion.wav");
+                break;
+                case 8:     if(datan == null){
                                 System.out.println("PARA REPRODUCIR TIENES QUE REALIZAR UNA OPERACION");
                             }else{
                             ob.nuevaGrabacion(datan);
                             rds.play("NuevaGrabacion.wav");
                             }
                 break;
-
                 default:    System.out.println("Teclea una opcion valida");
                 break;
             }
