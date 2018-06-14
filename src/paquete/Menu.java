@@ -12,6 +12,8 @@ import java.util.Scanner;
  * @author Emiliano
  */
 public class Menu {
+    public static double[] data;
+    
     public static void main(String [] args){
         int opc=1;
         int tiempoGrabacion;
@@ -22,6 +24,8 @@ public class Menu {
         OperacionesBasicas ob= new OperacionesBasicas();
         //Grabacion original
         double[] data=rcs.mainRecord();
+        setData(data);
+        
         //Nueva grabacion
         double[] datan=null;
         int k=1;
@@ -37,6 +41,7 @@ public class Menu {
             System.out.println("6.Interpolacion");
             System.out.println("7.Reproducir Entrada");
             System.out.println("8.Reproducir Salida");
+            System.out.println("9.Graficar");
             System.out.println("0.Salir");
             System.out.println("********************************");
             System.out.println("********************************");
@@ -76,9 +81,20 @@ public class Menu {
                             rds.play("NuevaGrabacion.wav");
                             }
                 break;
+                case 9:     JFrameVentana newv=new JFrameVentana();
+                            newv.setVisible(true);
+                break;
                 default:    System.out.println("Teclea una opcion valida");
                 break;
             }
         }
+    }
+    
+    public static void setData(double[] data){
+            Menu.data=data;
+    }
+    
+    public static double[] getData(){
+            return Menu.data;
     }
 }
