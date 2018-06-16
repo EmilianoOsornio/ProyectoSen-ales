@@ -12,10 +12,12 @@ import java.util.Scanner;
  * @author Emiliano
  */
 public class Menu {
-    public static double[] data;
+    public static double[] data,datan;
+    public static int segundos;
     
     public static void main(String [] args){
         int opc=1;
+        int segundos;
         int tiempoGrabacion;
         Scanner sc=new Scanner(System.in);
         RecordSound rcs=new RecordSound();
@@ -23,7 +25,10 @@ public class Menu {
         //tiempoGrabacion = rcs.
         OperacionesBasicas ob= new OperacionesBasicas();
         //Grabacion original
-        double[] data=rcs.mainRecord();
+        System.out.println("Cuanto tiempo deseas grabar?(segundos)");
+        segundos=sc.nextInt();
+        setSeg(segundos);
+        double[] data=rcs.mainRecord(segundos);
         setData(data);
         
         //Nueva grabacion
@@ -53,22 +58,27 @@ public class Menu {
                 case 1:     System.out.println("Ingresa el factor k (NO MAS DE 10)");
                             k=sc.nextInt();
                             datan=ob.amplificacion(data,k);
+                            setDatan(datan);
                 break;
                 case 2:     System.out.println("Ingresa el factor k");
                             k=sc.nextInt();
                             datan=ob.atenuacion(data,k);
+                            setDatan(datan);
                 break;
                 case 3:     System.out.println("Ingresa los segundos a desplazar");
                             k=sc.nextInt();
                             System.out.println("Ingresa el total de segundos de la grabacion");
                             int t=sc.nextInt();
                             datan=ob.desplazamiento(data,k,t);
+                            setDatan(datan);
                 break;
                 case 4:     datan=ob.reflejo(data);
+                            setDatan(datan);
                 break;
                 case 5:     System.out.println("Ingresa el factor k");
                             k=sc.nextInt();
                             datan=ob.diezmacion(data,k);
+                            setDatan(datan);
                 break;
                 case 6: 
                 break;
@@ -96,5 +106,21 @@ public class Menu {
     
     public static double[] getData(){
             return Menu.data;
+    }
+    
+    public static void setDatan(double[] datan){
+            Menu.datan=datan;
+    }
+    
+    public static double[] getDatan(){
+            return Menu.datan;
+    }
+    
+    public static void setSeg(int segundos){
+            Menu.segundos=segundos;
+    }
+    
+    public static int getSeg(){
+            return Menu.segundos;
     }
 }

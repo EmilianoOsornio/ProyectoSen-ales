@@ -5,6 +5,8 @@
  */
 package paquete;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
@@ -14,7 +16,9 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.statistics.HistogramDataset;
 import org.jfree.data.xy.IntervalXYDataset;
+import org.jfree.ui.RectangleInsets;
 
 /**
  *
@@ -25,33 +29,11 @@ public class JFrameVentana extends javax.swing.JFrame {
     /**
      * Creates new form JFrameVentana
      */
-    JFreeChart grafica,grafica2;
-    Menu men=new Menu();
-    double[] data;
-    DefaultCategoryDataset Datos = new DefaultCategoryDataset();
-    DefaultCategoryDataset Datos2 = new DefaultCategoryDataset();
     
     public JFrameVentana() {
         initComponents();
-        data=Menu.getData();
-        
-        for(int i=0; i<15000; i++){
-            Datos.addValue(data[i],"Audio Entrante",String.valueOf(i));
-        }
-        for(int i=15000; i<30000; i++){
-            Datos2.addValue(data[i],"Audio Entrante",String.valueOf(i));
-        }
-        
-        
-        grafica = ChartFactory.createBarChart("Señal de Audio","t", "f(t)",Datos,PlotOrientation.VERTICAL, true, true, false);
-        CategoryPlot categoryPlot = grafica.getCategoryPlot();
-        BarRenderer br = (BarRenderer) categoryPlot.getRenderer();
-        br.setMaximumBarWidth(.00001);
-        
-        grafica2 = ChartFactory.createBarChart("Señal de Audio",null,null,Datos2,PlotOrientation.VERTICAL, true, true, false);
-        CategoryPlot categoryPlot2 = grafica2.getCategoryPlot();
-        BarRenderer br2 = (BarRenderer) categoryPlot2.getRenderer();
-        br2.setMaximumBarWidth(.00001); 
+        //System.out.println(Menu.getData().length);
+        //System.out.println(Menu.getDatan().length);
     }
 
     /**
@@ -64,13 +46,21 @@ public class JFrameVentana extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Graficar");
+        jButton1.setText("Graficar Entrada");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Graficar Salida");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -79,40 +69,265 @@ public class JFrameVentana extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(jButton1)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addGap(128, 128, 128)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
+                .addGap(89, 89, 89)
                 .addComponent(jButton1)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(jButton2)
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Grafica Entrada
+        JFreeChart grafica,grafica2,grafica3,grafica4,grafica5,grafica6,grafica7,grafica8;
+        DefaultCategoryDataset Datos = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos2 = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos3 = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos4 = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos5 = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos6 = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos7 = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos8 = new DefaultCategoryDataset();
+        double[] data;
+        data=Menu.getData();
+        System.out.println(data.length);
+        Datos.clear();
+        Datos2.clear();
+        Datos3.clear();
+        for(int i=0; i<data.length/8; i++){
+            Datos.addValue(data[i],"Audio Entrante",String.valueOf(i));
+        }
+        for(int i=data.length/8; i<2*data.length/8; i++){
+            Datos2.addValue(data[i],"Audio Entrante",String.valueOf(i));
+        }
+        for(int i=2*data.length/8; i<3*data.length/8; i++){
+            Datos3.addValue(data[i],"Audio Entrante",String.valueOf(i));
+        }
+        for(int i=3*data.length/8; i<4*data.length/8; i++){
+            Datos4.addValue(data[i],"Audio Entrante",String.valueOf(i));
+        }
+        for(int i=4*data.length/8; i<5*data.length/8; i++){
+            Datos5.addValue(data[i],"Audio Entrante",String.valueOf(i));
+        }
+        for(int i=5*data.length/8; i<6*data.length/8; i++){
+            Datos6.addValue(data[i],"Audio Entrante",String.valueOf(i));
+        }
+        for(int i=6*data.length/8; i<7*data.length/8; i++){
+            Datos7.addValue(data[i],"Audio Entrante",String.valueOf(i));
+        }
+        for(int i=7*data.length/8; i<data.length; i++){
+            Datos8.addValue(data[i],"Audio Entrante",String.valueOf(i));
+        }
+       
+        grafica = ChartFactory.createBarChart("","t", "f(t)",Datos,PlotOrientation.VERTICAL, true, true, false);
+        CategoryPlot categoryPlot = grafica.getCategoryPlot();
+        BarRenderer br = (BarRenderer) categoryPlot.getRenderer();
+        br.setMaximumBarWidth(.00001);
+        grafica2 = ChartFactory.createBarChart("",null,null,Datos2,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot2 = grafica2.getCategoryPlot();
+        BarRenderer br2 = (BarRenderer) categoryPlot2.getRenderer();
+        br2.setMaximumBarWidth(.00001); 
+        grafica3 = ChartFactory.createBarChart("",null,null,Datos3,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot3 = grafica3.getCategoryPlot();
+        BarRenderer br3 = (BarRenderer) categoryPlot3.getRenderer();
+        br3.setMaximumBarWidth(.00001); 
+        grafica4 = ChartFactory.createBarChart("",null,null,Datos4,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot4 = grafica4.getCategoryPlot();
+        BarRenderer br4 = (BarRenderer) categoryPlot4.getRenderer();
+        br4.setMaximumBarWidth(.00001);
+        grafica5 = ChartFactory.createBarChart("",null,null,Datos5,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot5 = grafica3.getCategoryPlot();
+        BarRenderer br5 = (BarRenderer) categoryPlot5.getRenderer();
+        br5.setMaximumBarWidth(.00001);
+        grafica6 = ChartFactory.createBarChart("",null,null,Datos6,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot6 = grafica6.getCategoryPlot();
+        BarRenderer br6 = (BarRenderer) categoryPlot6.getRenderer();
+        br6.setMaximumBarWidth(.00001);
+        grafica7 = ChartFactory.createBarChart("",null,null,Datos7,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot7 = grafica7.getCategoryPlot();
+        BarRenderer br7 = (BarRenderer) categoryPlot7.getRenderer();
+        br7.setMaximumBarWidth(.00001);
+        grafica8 = ChartFactory.createBarChart("",null,null,Datos8,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot8 = grafica8.getCategoryPlot();
+        BarRenderer br8 = (BarRenderer) categoryPlot8.getRenderer();
+        br8.setMaximumBarWidth(.00001);
+        
+        
         ChartPanel Panel = new ChartPanel(grafica);
-        Panel.setAutoscrolls(true);
-        Panel.setHorizontalAxisTrace(true);
-        Panel.zoomOutBoth(1000, 1000);
-        JFrame Ventana = new JFrame("Gráfica");
-        Ventana.getContentPane().add(Panel);
-        Ventana.pack();
-        Ventana.setVisible(true);
+        Panel.zoomOutBoth(500, 500);
         
         ChartPanel Panel2 = new ChartPanel(grafica2);
-        Panel2.setHorizontalAxisTrace(true);
-        Panel2.zoomOutBoth(1000, 1000);
-        JFrame Ventana2 = new JFrame("Gráfica2");
-        Ventana2.getContentPane().add(Panel2);
-        Ventana2.pack();
-        Ventana2.setVisible(true);
-        //Ventana.setDefaultCloseOperation(JFrameVentana.EXIT_ON_CLOSE);
+        Panel2.zoomOutBoth(500, 500);
+        
+        ChartPanel Panel3 = new ChartPanel(grafica3);
+        Panel3.zoomOutBoth(500, 500);
+        
+        ChartPanel Panel4 = new ChartPanel(grafica4);
+        Panel4.zoomOutBoth(500, 500);
+        
+        ChartPanel Panel5 = new ChartPanel(grafica5);
+        Panel5.zoomOutBoth(500, 500);
+        
+        ChartPanel Panel6 = new ChartPanel(grafica6);
+        Panel6.zoomOutBoth(500, 500);
+        
+        ChartPanel Panel7 = new ChartPanel(grafica7);
+        Panel7.zoomOutBoth(500, 500);
+        
+        ChartPanel Panel8 = new ChartPanel(grafica8);
+        Panel8.zoomOutBoth(500, 500);
+
+        
+        
+        
+        JFrame Ventana = new JFrame("Gráfica Entrada");
+        //Ventana.getContentPane().add(Panel);
+        Ventana.getContentPane().add(Panel);
+        Ventana.getContentPane().add(Panel2);
+        Ventana.getContentPane().add(Panel3);
+        Ventana.getContentPane().add(Panel4);
+        Ventana.getContentPane().add(Panel5);
+        Ventana.getContentPane().add(Panel6);
+        Ventana.getContentPane().add(Panel7);
+        Ventana.getContentPane().add(Panel8);
+        
+        Ventana.setLayout(new GridLayout(1, 0));
+        Ventana.pack();
+        Ventana.setVisible(true);
+        Ventana.setBounds(0, 0, 1200, 400);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //Grafica Salida
+        
+        JFreeChart grafica,grafica2,grafica3,grafica4,grafica5,grafica6,grafica7,grafica8;
+        DefaultCategoryDataset Datos = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos2 = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos3 = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos4 = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos5 = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos6 = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos7 = new DefaultCategoryDataset();
+        DefaultCategoryDataset Datos8 = new DefaultCategoryDataset();
+        double[] data;
+        data=Menu.getDatan();
+        System.out.println(data.length);
+        Datos.clear();
+        Datos2.clear();
+        Datos3.clear();
+        for(int i=0; i<data.length/8; i++){
+            Datos.addValue(data[i],"Audio Saliente",String.valueOf(i));
+        }
+        for(int i=data.length/8; i<2*data.length/8; i++){
+            Datos2.addValue(data[i],"Audio Saliente",String.valueOf(i));
+        }
+        for(int i=2*data.length/8; i<3*data.length/8; i++){
+            Datos3.addValue(data[i],"Audio Saliente",String.valueOf(i));
+        }
+        for(int i=3*data.length/8; i<4*data.length/8; i++){
+            Datos4.addValue(data[i],"Audio Saliente",String.valueOf(i));
+        }
+        for(int i=4*data.length/8; i<5*data.length/8; i++){
+            Datos5.addValue(data[i],"Audio Saliente",String.valueOf(i));
+        }
+        for(int i=5*data.length/8; i<6*data.length/8; i++){
+            Datos6.addValue(data[i],"Audio Saliente",String.valueOf(i));
+        }
+        for(int i=6*data.length/8; i<7*data.length/8; i++){
+            Datos7.addValue(data[i],"Audio Saliente",String.valueOf(i));
+        }
+        for(int i=7*data.length/8; i<data.length; i++){
+            Datos8.addValue(data[i],"Audio Saliente",String.valueOf(i));
+        }
+       
+        grafica = ChartFactory.createBarChart("","t", "f(t)",Datos,PlotOrientation.VERTICAL, true, true, false);
+        CategoryPlot categoryPlot = grafica.getCategoryPlot();
+        BarRenderer br = (BarRenderer) categoryPlot.getRenderer();
+        br.setMaximumBarWidth(.00001);
+        grafica2 = ChartFactory.createBarChart("",null,null,Datos2,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot2 = grafica2.getCategoryPlot();
+        BarRenderer br2 = (BarRenderer) categoryPlot2.getRenderer();
+        br2.setMaximumBarWidth(.00001); 
+        grafica3 = ChartFactory.createBarChart("",null,null,Datos3,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot3 = grafica3.getCategoryPlot();
+        BarRenderer br3 = (BarRenderer) categoryPlot3.getRenderer();
+        br3.setMaximumBarWidth(.00001); 
+        grafica4 = ChartFactory.createBarChart("",null,null,Datos4,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot4 = grafica4.getCategoryPlot();
+        BarRenderer br4 = (BarRenderer) categoryPlot4.getRenderer();
+        br4.setMaximumBarWidth(.00001);
+        grafica5 = ChartFactory.createBarChart("",null,null,Datos5,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot5 = grafica3.getCategoryPlot();
+        BarRenderer br5 = (BarRenderer) categoryPlot5.getRenderer();
+        br5.setMaximumBarWidth(.00001);
+        grafica6 = ChartFactory.createBarChart("",null,null,Datos6,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot6 = grafica6.getCategoryPlot();
+        BarRenderer br6 = (BarRenderer) categoryPlot6.getRenderer();
+        br6.setMaximumBarWidth(.00001);
+        grafica7 = ChartFactory.createBarChart("",null,null,Datos7,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot7 = grafica7.getCategoryPlot();
+        BarRenderer br7 = (BarRenderer) categoryPlot7.getRenderer();
+        br7.setMaximumBarWidth(.00001);
+        grafica8 = ChartFactory.createBarChart("",null,null,Datos8,PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot8 = grafica8.getCategoryPlot();
+        BarRenderer br8 = (BarRenderer) categoryPlot8.getRenderer();
+        br8.setMaximumBarWidth(.00001);
+        
+        
+        ChartPanel Panel = new ChartPanel(grafica);
+        Panel.zoomOutBoth(500, 500);
+        
+        ChartPanel Panel2 = new ChartPanel(grafica2);
+        Panel2.zoomOutBoth(500, 500);
+        
+        ChartPanel Panel3 = new ChartPanel(grafica3);
+        Panel3.zoomOutBoth(500, 500);
+        
+        ChartPanel Panel4 = new ChartPanel(grafica4);
+        Panel4.zoomOutBoth(500, 500);
+        
+        ChartPanel Panel5 = new ChartPanel(grafica5);
+        Panel5.zoomOutBoth(500, 500);
+        
+        ChartPanel Panel6 = new ChartPanel(grafica6);
+        Panel6.zoomOutBoth(500, 500);
+        
+        ChartPanel Panel7 = new ChartPanel(grafica7);
+        Panel7.zoomOutBoth(500, 500);
+        
+        ChartPanel Panel8 = new ChartPanel(grafica8);
+        Panel8.zoomOutBoth(500, 500);
+
+        
+        
+        
+        JFrame Ventana = new JFrame("Gráfica Salida");
+        //Ventana.getContentPane().add(Panel);
+        Ventana.getContentPane().add(Panel);
+        Ventana.getContentPane().add(Panel2);
+        Ventana.getContentPane().add(Panel3);
+        Ventana.getContentPane().add(Panel4);
+        Ventana.getContentPane().add(Panel5);
+        Ventana.getContentPane().add(Panel6);
+        Ventana.getContentPane().add(Panel7);
+        Ventana.getContentPane().add(Panel8);
+        
+        Ventana.setLayout(new GridLayout(1, 0));
+        Ventana.pack();
+        Ventana.setVisible(true);
+        Ventana.setBounds(0, 400, 1200, 400);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,5 +370,6 @@ public class JFrameVentana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }

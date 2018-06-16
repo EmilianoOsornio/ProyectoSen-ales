@@ -88,15 +88,12 @@ public class RecordSound {
     /**
      * Entry to run the program
      */
-    public static double[] mainRecord() {
+    public static double[] mainRecord(int tiempo) {
         Scanner sc= new Scanner(System.in);
         boolean recording=false;
         String grabar;
-        int segundos;
         final RecordSound recorder = new RecordSound();
-        System.out.println("Cuanto tiempo deseas grabar?(segundos)");
-        segundos=sc.nextInt();
-        RECORD_TIME=segundos*1000; 
+        RECORD_TIME=tiempo*1000; 
         // creates a new thread that waits for a specified
         // of time before stopping
         Thread stopper = new Thread(new Runnable() {

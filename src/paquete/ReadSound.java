@@ -47,7 +47,7 @@ public class ReadSound {
                 int bytesRead = ais.read(data);
                 if (bytesToRead != bytesRead)
                     throw new IllegalStateException("read only " + bytesRead + " of " + bytesToRead + " bytes"); 
-            }
+                }
 
             // try to read from URL
             else {
