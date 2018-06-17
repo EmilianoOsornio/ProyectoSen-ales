@@ -49,7 +49,7 @@ public class Menu {
             System.out.println("9.Reproducir Entrada");
             System.out.println("10.Reproducir Salida");
             System.out.println("11.Graficar");
-            System.out.println("11.Convolución");
+            System.out.println("12.Convolución");
             System.out.println("0.Salir");
             System.out.println("********************************");
             System.out.println("********************************");
