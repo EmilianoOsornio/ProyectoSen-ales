@@ -1,4 +1,4 @@
-/*
+﻿/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -124,6 +124,45 @@ public class OperacionesBasicas {
         System.out.println("Tamaño nuevo:" + data2.length);
         nuevaGrabacion(data2);
         return data2;
+    }
+    
+    public double[] interpolacionLineal(double[] data, int k){
+        int cont=1;
+        double vi;
+        double vf;
+        double factor = 0;
+        double[] data2 = new double[data.length*k];
+        for(int i=0,j=0; i<data.length*k; i=i+k,j++){
+            data2[i]=data[j];
+            vi=data[j];
+            if(j+1<data.length-1){
+                vf = data[j+1];
+                 factor = calcularFactor(vi, vf, k);
+            }
+            
+            while(cont<k){
+                
+                data2[i+cont]=data[j]+factor;
+                factor *=k;
+                cont++;
+            }
+            cont=1;
+        }
+        System.out.println("SE APLICÓ INTERPOLACIÓN LINEAL ");
+        System.out.println("Tamaño original:" + data.length);
+        System.out.println("Tamaño nuevo:" + data2.length);
+        nuevaGrabacion(data2);
+        return data2;
+    }
+    
+    private double calcularFactor(double i, double f, int k){
+        double r = 0;
+        if(f>=i){
+            r = Math.abs(i-f)/(double)k;
+        }else{
+            r = (double)-1*Math.abs(i-f)/(double)k;
+        }
+        return r;
     }
     
     public void nuevaGrabacion(double[] grabacion){

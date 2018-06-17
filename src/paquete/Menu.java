@@ -87,11 +87,14 @@ public class Menu {
                             setDatan(datan);
                 break;
                 case 7:     System.out.println("Ingresa el factor k");
-                            k=sc.nextInt();
+                            //k=sc.nextInt();
                             datan=ob.interpolacionEscalon(data, k);
                             setDatan(datan);
                 break;
-                case 8:
+                case 8:     System.out.println("Ingresa el factor k");
+                            k=sc.nextInt();
+                            datan=ob.interpolacionLineal(data, k);
+                            setDatan(datan);
                 break;
                 case 9:     rds.play("Grabacion.wav");
                 break;
