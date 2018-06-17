@@ -18,7 +18,8 @@ public class OperacionesBasicas {
         for(int i=0; i<data.length; i++){
             data2[i]=data[i]*k;
         }
-        System.out.println("SE AMPLIFICO EL SONIDO");
+        System.out.println("SE AMPLIFICÓ EL SONIDO");
+        nuevaGrabacion(data2);
         return data2;
     }
     
@@ -27,7 +28,8 @@ public class OperacionesBasicas {
         for(int i=0; i<data.length; i++){
             data2[i]=data[i]/k;
         }
-        System.out.println("SE ATENUO EL SONIDO");
+        System.out.println("SE ATENUÓ EL SONIDO");
+        nuevaGrabacion(data2);
         return data2;
     }
     
@@ -56,6 +58,7 @@ public class OperacionesBasicas {
                     }
                 }
             }
+            nuevaGrabacion(copyData);
             return copyData;
         }else{
             System.out.println("No es posible ");
@@ -69,7 +72,8 @@ public class OperacionesBasicas {
         for(int i=0; i<data.length; i++){
             data2[(data.length-1)-i]=data[i];
         }        
-        System.out.println("SE REFLEJO EL SONIDO");
+        System.out.println("SE REFLEJÓ EL SONIDO");
+        nuevaGrabacion(data2);
         return data2;
     }
     
@@ -88,8 +92,38 @@ public class OperacionesBasicas {
             }
         }
         System.out.println("Recorrido "+j);
-        
+        nuevaGrabacion(copyData);
         return copyData;
+    }
+    
+    public double[] interpolacionCero(double[] data, int k){
+        double[] data2 = new double[data.length*k];
+        for(int i=0,j=0; i<data.length*k; i=i+k,j++){
+            data2[i]=data[j];
+        }
+        System.out.println("SE APLICÓ INTERPOLACIÓN A CERO");
+        System.out.println("Tamaño original:" + data.length);
+        System.out.println("Tamaño nuevo:" + data2.length);
+        nuevaGrabacion(data2);
+        return data2;
+    }
+    
+    public double[] interpolacionEscalon(double[] data, int k){
+        int cont=0;
+        double[] data2 = new double[data.length*k];
+        for(int i=0,j=0; i<data.length*k; i=i+k,j++){
+            data2[i]=data[j];
+            while(cont<k){
+                data2[i+cont]=data[j];
+                cont++;
+            }
+            cont=0;
+        }
+        System.out.println("SE APLICÓ INTERPOLACIÓN A ESCALÓN");
+        System.out.println("Tamaño original:" + data.length);
+        System.out.println("Tamaño nuevo:" + data2.length);
+        nuevaGrabacion(data2);
+        return data2;
     }
     
     public void nuevaGrabacion(double[] grabacion){

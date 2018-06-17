@@ -5,10 +5,12 @@
  */
 package paquete;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -16,9 +18,6 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.statistics.HistogramDataset;
-import org.jfree.data.xy.IntervalXYDataset;
-import org.jfree.ui.RectangleInsets;
 
 /**
  *
@@ -26,9 +25,9 @@ import org.jfree.ui.RectangleInsets;
  */
 public class JFrameVentana extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFrameVentana
-     */
+    
+    double low=-3,high=3;
+
     
     public JFrameVentana() {
         initComponents();
@@ -99,6 +98,17 @@ public class JFrameVentana extends javax.swing.JFrame {
         DefaultCategoryDataset Datos6 = new DefaultCategoryDataset();
         DefaultCategoryDataset Datos7 = new DefaultCategoryDataset();
         DefaultCategoryDataset Datos8 = new DefaultCategoryDataset();
+        
+        //Botones
+        JButton zoomin,zoomout;
+        
+        zoomin = new JButton("+");
+        zoomin.setBounds(0, 0, 100, 30);
+        
+        zoomout = new JButton("-");
+        zoomout.setBounds(0, 0, 100, 30);
+        
+
         double[] data;
         data=Menu.getData();
         System.out.println(data.length);
@@ -106,34 +116,34 @@ public class JFrameVentana extends javax.swing.JFrame {
         Datos2.clear();
         Datos3.clear();
         for(int i=0; i<data.length/8; i++){
-            Datos.addValue(data[i],"Audio Entrante",String.valueOf(i));
+            Datos.addValue(data[i],"Audio Saliente",String.valueOf(i));
         }
         for(int i=data.length/8; i<2*data.length/8; i++){
-            Datos2.addValue(data[i],"Audio Entrante",String.valueOf(i));
+            Datos2.addValue(data[i],"Audio Saliente",String.valueOf(i));
         }
         for(int i=2*data.length/8; i<3*data.length/8; i++){
-            Datos3.addValue(data[i],"Audio Entrante",String.valueOf(i));
+            Datos3.addValue(data[i],"Audio Saliente",String.valueOf(i));
         }
         for(int i=3*data.length/8; i<4*data.length/8; i++){
-            Datos4.addValue(data[i],"Audio Entrante",String.valueOf(i));
+            Datos4.addValue(data[i],"Audio Saliente",String.valueOf(i));
         }
         for(int i=4*data.length/8; i<5*data.length/8; i++){
-            Datos5.addValue(data[i],"Audio Entrante",String.valueOf(i));
+            Datos5.addValue(data[i],"Audio Saliente",String.valueOf(i));
         }
         for(int i=5*data.length/8; i<6*data.length/8; i++){
-            Datos6.addValue(data[i],"Audio Entrante",String.valueOf(i));
+            Datos6.addValue(data[i],"Audio Saliente",String.valueOf(i));
         }
         for(int i=6*data.length/8; i<7*data.length/8; i++){
-            Datos7.addValue(data[i],"Audio Entrante",String.valueOf(i));
+            Datos7.addValue(data[i],"Audio Saliente",String.valueOf(i));
         }
         for(int i=7*data.length/8; i<data.length; i++){
-            Datos8.addValue(data[i],"Audio Entrante",String.valueOf(i));
+            Datos8.addValue(data[i],"Audio Saliente",String.valueOf(i));
         }
        
-        grafica = ChartFactory.createBarChart("","t", "f(t)",Datos,PlotOrientation.VERTICAL, true, true, false);
+        grafica = ChartFactory.createBarChart("",null, null,Datos,PlotOrientation.VERTICAL, false, false, false);
         CategoryPlot categoryPlot = grafica.getCategoryPlot();
         BarRenderer br = (BarRenderer) categoryPlot.getRenderer();
-        br.setMaximumBarWidth(.00001);
+        br.setMaximumBarWidth(.00001);        
         grafica2 = ChartFactory.createBarChart("",null,null,Datos2,PlotOrientation.VERTICAL, false, false, false);
         CategoryPlot categoryPlot2 = grafica2.getCategoryPlot();
         BarRenderer br2 = (BarRenderer) categoryPlot2.getRenderer();
@@ -147,7 +157,7 @@ public class JFrameVentana extends javax.swing.JFrame {
         BarRenderer br4 = (BarRenderer) categoryPlot4.getRenderer();
         br4.setMaximumBarWidth(.00001);
         grafica5 = ChartFactory.createBarChart("",null,null,Datos5,PlotOrientation.VERTICAL, false, false, false);
-        CategoryPlot categoryPlot5 = grafica3.getCategoryPlot();
+        CategoryPlot categoryPlot5 = grafica5.getCategoryPlot();
         BarRenderer br5 = (BarRenderer) categoryPlot5.getRenderer();
         br5.setMaximumBarWidth(.00001);
         grafica6 = ChartFactory.createBarChart("",null,null,Datos6,PlotOrientation.VERTICAL, false, false, false);
@@ -162,6 +172,68 @@ public class JFrameVentana extends javax.swing.JFrame {
         CategoryPlot categoryPlot8 = grafica8.getCategoryPlot();
         BarRenderer br8 = (BarRenderer) categoryPlot8.getRenderer();
         br8.setMaximumBarWidth(.00001);
+        
+        //Dimensiones y tags
+        categoryPlot.getDomainAxis().setVisible(false);
+        categoryPlot.getRangeAxis().setVisible(true);
+        categoryPlot2.getDomainAxis().setVisible(false);
+        categoryPlot2.getRangeAxis().setVisible(false);
+        categoryPlot3.getDomainAxis().setVisible(false);
+        categoryPlot3.getRangeAxis().setVisible(false);
+        categoryPlot4.getDomainAxis().setVisible(false);
+        categoryPlot4.getRangeAxis().setVisible(false);
+        categoryPlot5.getDomainAxis().setVisible(false);
+        categoryPlot5.getRangeAxis().setVisible(false);
+        categoryPlot6.getDomainAxis().setVisible(false);
+        categoryPlot6.getRangeAxis().setVisible(false);
+        categoryPlot7.getDomainAxis().setVisible(false);
+        categoryPlot7.getRangeAxis().setVisible(false);
+        categoryPlot8.getDomainAxis().setVisible(false);
+        categoryPlot8.getRangeAxis().setVisible(false);
+        
+        categoryPlot.getRangeAxis().setRange(low, high);
+        categoryPlot2.getRangeAxis().setRange(low, high);
+        categoryPlot3.getRangeAxis().setRange(low, high);
+        categoryPlot4.getRangeAxis().setRange(low, high);
+        categoryPlot5.getRangeAxis().setRange(low, high);
+        categoryPlot6.getRangeAxis().setRange(low, high);
+        categoryPlot7.getRangeAxis().setRange(low, high);
+        categoryPlot8.getRangeAxis().setRange(low, high);
+        
+        //Acciones de los botones
+        
+        zoomin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                low=low+0.2;
+                high=high-0.2;
+                categoryPlot.getRangeAxis().setRange(low, high);
+                categoryPlot2.getRangeAxis().setRange(low, high);
+                categoryPlot3.getRangeAxis().setRange(low, high);
+                categoryPlot4.getRangeAxis().setRange(low, high);
+                categoryPlot5.getRangeAxis().setRange(low, high);
+                categoryPlot6.getRangeAxis().setRange(low, high);
+                categoryPlot7.getRangeAxis().setRange(low, high);
+                categoryPlot8.getRangeAxis().setRange(low, high);
+            }
+        });
+        
+        zoomout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                low=low-0.2;
+                high=high+0.2;
+                categoryPlot.getRangeAxis().setRange(low, high);
+                categoryPlot2.getRangeAxis().setRange(low, high);
+                categoryPlot3.getRangeAxis().setRange(low, high);
+                categoryPlot4.getRangeAxis().setRange(low, high);
+                categoryPlot5.getRangeAxis().setRange(low, high);
+                categoryPlot6.getRangeAxis().setRange(low, high);
+                categoryPlot7.getRangeAxis().setRange(low, high);
+                categoryPlot8.getRangeAxis().setRange(low, high);
+            }
+        });
+        
         
         
         ChartPanel Panel = new ChartPanel(grafica);
@@ -187,11 +259,13 @@ public class JFrameVentana extends javax.swing.JFrame {
         
         ChartPanel Panel8 = new ChartPanel(grafica8);
         Panel8.zoomOutBoth(500, 500);
-
+        
+        JPanel PanelControl= new JPanel();
+        PanelControl.add(zoomin);
+        PanelControl.add(zoomout);
         
         
-        
-        JFrame Ventana = new JFrame("Gráfica Entrada");
+        JFrame Ventana = new JFrame("Audio Entrada");
         //Ventana.getContentPane().add(Panel);
         Ventana.getContentPane().add(Panel);
         Ventana.getContentPane().add(Panel2);
@@ -201,16 +275,16 @@ public class JFrameVentana extends javax.swing.JFrame {
         Ventana.getContentPane().add(Panel6);
         Ventana.getContentPane().add(Panel7);
         Ventana.getContentPane().add(Panel8);
+        Ventana.getContentPane().add(PanelControl);
         
         Ventana.setLayout(new GridLayout(1, 0));
         Ventana.pack();
         Ventana.setVisible(true);
-        Ventana.setBounds(0, 0, 1200, 400);
+        Ventana.setBounds(20, 0, 1200, 350);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //Grafica Salida
-        
         JFreeChart grafica,grafica2,grafica3,grafica4,grafica5,grafica6,grafica7,grafica8;
         DefaultCategoryDataset Datos = new DefaultCategoryDataset();
         DefaultCategoryDataset Datos2 = new DefaultCategoryDataset();
@@ -220,6 +294,17 @@ public class JFrameVentana extends javax.swing.JFrame {
         DefaultCategoryDataset Datos6 = new DefaultCategoryDataset();
         DefaultCategoryDataset Datos7 = new DefaultCategoryDataset();
         DefaultCategoryDataset Datos8 = new DefaultCategoryDataset();
+        
+        //Botones
+        JButton zoomin,zoomout;
+        
+        zoomin = new JButton("+");
+        zoomin.setBounds(0, 0, 100, 30);
+        
+        zoomout = new JButton("-");
+        zoomout.setBounds(0, 0, 100, 30);
+        
+
         double[] data;
         data=Menu.getDatan();
         System.out.println(data.length);
@@ -251,10 +336,10 @@ public class JFrameVentana extends javax.swing.JFrame {
             Datos8.addValue(data[i],"Audio Saliente",String.valueOf(i));
         }
        
-        grafica = ChartFactory.createBarChart("","t", "f(t)",Datos,PlotOrientation.VERTICAL, true, true, false);
+        grafica = ChartFactory.createBarChart("",null, null,Datos,PlotOrientation.VERTICAL, false, false, false);
         CategoryPlot categoryPlot = grafica.getCategoryPlot();
         BarRenderer br = (BarRenderer) categoryPlot.getRenderer();
-        br.setMaximumBarWidth(.00001);
+        br.setMaximumBarWidth(.00001);        
         grafica2 = ChartFactory.createBarChart("",null,null,Datos2,PlotOrientation.VERTICAL, false, false, false);
         CategoryPlot categoryPlot2 = grafica2.getCategoryPlot();
         BarRenderer br2 = (BarRenderer) categoryPlot2.getRenderer();
@@ -268,7 +353,7 @@ public class JFrameVentana extends javax.swing.JFrame {
         BarRenderer br4 = (BarRenderer) categoryPlot4.getRenderer();
         br4.setMaximumBarWidth(.00001);
         grafica5 = ChartFactory.createBarChart("",null,null,Datos5,PlotOrientation.VERTICAL, false, false, false);
-        CategoryPlot categoryPlot5 = grafica3.getCategoryPlot();
+        CategoryPlot categoryPlot5 = grafica5.getCategoryPlot();
         BarRenderer br5 = (BarRenderer) categoryPlot5.getRenderer();
         br5.setMaximumBarWidth(.00001);
         grafica6 = ChartFactory.createBarChart("",null,null,Datos6,PlotOrientation.VERTICAL, false, false, false);
@@ -283,6 +368,70 @@ public class JFrameVentana extends javax.swing.JFrame {
         CategoryPlot categoryPlot8 = grafica8.getCategoryPlot();
         BarRenderer br8 = (BarRenderer) categoryPlot8.getRenderer();
         br8.setMaximumBarWidth(.00001);
+        
+        //Tags
+        categoryPlot.getDomainAxis().setVisible(false);
+        categoryPlot.getRangeAxis().setVisible(true);
+        categoryPlot2.getDomainAxis().setVisible(false);
+        categoryPlot2.getRangeAxis().setVisible(false);
+        categoryPlot3.getDomainAxis().setVisible(false);
+        categoryPlot3.getRangeAxis().setVisible(false);
+        categoryPlot4.getDomainAxis().setVisible(false);
+        categoryPlot4.getRangeAxis().setVisible(false);
+        categoryPlot5.getDomainAxis().setVisible(false);
+        categoryPlot5.getRangeAxis().setVisible(false);
+        categoryPlot6.getDomainAxis().setVisible(false);
+        categoryPlot6.getRangeAxis().setVisible(false);
+        categoryPlot7.getDomainAxis().setVisible(false);
+        categoryPlot7.getRangeAxis().setVisible(false);
+        categoryPlot8.getDomainAxis().setVisible(false);
+        categoryPlot8.getRangeAxis().setVisible(false);
+        
+        //Rango
+        categoryPlot2.getRangeAxis().setVerticalTickLabels(false);
+        categoryPlot.getRangeAxis().setRange(low, high);
+        categoryPlot2.getRangeAxis().setRange(low, high);
+        categoryPlot3.getRangeAxis().setRange(low, high);
+        categoryPlot4.getRangeAxis().setRange(low, high);
+        categoryPlot5.getRangeAxis().setRange(low, high);
+        categoryPlot6.getRangeAxis().setRange(low, high);
+        categoryPlot7.getRangeAxis().setRange(low, high);
+        categoryPlot8.getRangeAxis().setRange(low, high);
+        
+        //Acciones de los botones
+        
+        zoomin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                low=low+0.2;
+                high=high-0.2;
+                categoryPlot.getRangeAxis().setRange(low, high);
+                categoryPlot2.getRangeAxis().setRange(low, high);
+                categoryPlot3.getRangeAxis().setRange(low, high);
+                categoryPlot4.getRangeAxis().setRange(low, high);
+                categoryPlot5.getRangeAxis().setRange(low, high);
+                categoryPlot6.getRangeAxis().setRange(low, high);
+                categoryPlot7.getRangeAxis().setRange(low, high);
+                categoryPlot8.getRangeAxis().setRange(low, high);
+            }
+        });
+        
+        zoomout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                low=low-0.2;
+                high=high+0.2;
+                categoryPlot.getRangeAxis().setRange(low, high);
+                categoryPlot2.getRangeAxis().setRange(low, high);
+                categoryPlot3.getRangeAxis().setRange(low, high);
+                categoryPlot4.getRangeAxis().setRange(low, high);
+                categoryPlot5.getRangeAxis().setRange(low, high);
+                categoryPlot6.getRangeAxis().setRange(low, high);
+                categoryPlot7.getRangeAxis().setRange(low, high);
+                categoryPlot8.getRangeAxis().setRange(low, high);
+            }
+        });
+        
         
         
         ChartPanel Panel = new ChartPanel(grafica);
@@ -308,11 +457,13 @@ public class JFrameVentana extends javax.swing.JFrame {
         
         ChartPanel Panel8 = new ChartPanel(grafica8);
         Panel8.zoomOutBoth(500, 500);
-
+        
+        JPanel PanelControl= new JPanel();
+        PanelControl.add(zoomin);
+        PanelControl.add(zoomout);
         
         
-        
-        JFrame Ventana = new JFrame("Gráfica Salida");
+        JFrame Ventana = new JFrame("Audio Salida");
         //Ventana.getContentPane().add(Panel);
         Ventana.getContentPane().add(Panel);
         Ventana.getContentPane().add(Panel2);
@@ -322,11 +473,12 @@ public class JFrameVentana extends javax.swing.JFrame {
         Ventana.getContentPane().add(Panel6);
         Ventana.getContentPane().add(Panel7);
         Ventana.getContentPane().add(Panel8);
+        Ventana.getContentPane().add(PanelControl);
         
         Ventana.setLayout(new GridLayout(1, 0));
         Ventana.pack();
         Ventana.setVisible(true);
-        Ventana.setBounds(0, 400, 1200, 400);
+        Ventana.setBounds(20, 400, 1200, 350);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

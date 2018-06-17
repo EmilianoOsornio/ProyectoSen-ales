@@ -13,8 +13,6 @@ import javax.sound.sampled.*;
 import java.io.*;
 import java.util.Scanner;
 import java.io.File;
-import java.net.URL;
-
  
 public class RecordSound {
     // record duration, in milliseconds

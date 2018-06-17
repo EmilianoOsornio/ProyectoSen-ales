@@ -43,10 +43,13 @@ public class Menu {
             System.out.println("3.Desplazamiento");
             System.out.println("4.Reflejo");
             System.out.println("5.Diezmacion");
-            System.out.println("6.Interpolacion");
-            System.out.println("7.Reproducir Entrada");
-            System.out.println("8.Reproducir Salida");
-            System.out.println("9.Graficar");
+            System.out.println("6.Interpolacion a cero");
+            System.out.println("7.Interpolacion a escalon");
+            System.out.println("8.Interpolacion lineal");
+            System.out.println("9.Reproducir Entrada");
+            System.out.println("10.Reproducir Salida");
+            System.out.println("11.Graficar");
+            System.out.println("11.Convolución");
             System.out.println("0.Salir");
             System.out.println("********************************");
             System.out.println("********************************");
@@ -67,9 +70,7 @@ public class Menu {
                 break;
                 case 3:     System.out.println("Ingresa los segundos a desplazar");
                             k=sc.nextInt();
-                            System.out.println("Ingresa el total de segundos de la grabacion");
-                            int t=sc.nextInt();
-                            datan=ob.desplazamiento(data,k,t);
+                            datan=ob.desplazamiento(data,k,segundos);
                             setDatan(datan);
                 break;
                 case 4:     datan=ob.reflejo(data);
@@ -80,19 +81,30 @@ public class Menu {
                             datan=ob.diezmacion(data,k);
                             setDatan(datan);
                 break;
-                case 6: 
+                case 6:     System.out.println("Ingresa el factor k");
+                            k=sc.nextInt();
+                            datan=ob.interpolacionCero(data, k);
+                            setDatan(datan);
                 break;
-                case 7:     rds.play("Grabacion.wav");
+                case 7:     System.out.println("Ingresa el factor k");
+                            k=sc.nextInt();
+                            datan=ob.interpolacionEscalon(data, k);
+                            setDatan(datan);
                 break;
-                case 8:     if(datan == null){
+                case 8:
+                break;
+                case 9:     rds.play("Grabacion.wav");
+                break;
+                case 10:     if(datan == null){
                                 System.out.println("PARA REPRODUCIR TIENES QUE REALIZAR UNA OPERACION");
                             }else{
-                            ob.nuevaGrabacion(datan);
                             rds.play("NuevaGrabacion.wav");
                             }
                 break;
-                case 9:     JFrameVentana newv=new JFrameVentana();
+                case 11:    JFrameVentana newv=new JFrameVentana();
                             newv.setVisible(true);
+                break;
+                case 12:
                 break;
                 default:    System.out.println("Teclea una opcion valida");
                 break;
