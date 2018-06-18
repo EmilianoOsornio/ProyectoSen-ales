@@ -1,5 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+* To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -18,7 +18,6 @@ public class Menu {
     public static void main(String [] args){
         int opc=1;
         int segundos;
-        int tiempoGrabacion;
         Scanner sc=new Scanner(System.in);
         RecordSound rcs=new RecordSound();
         ReadSound rds=new ReadSound();
@@ -108,6 +107,7 @@ public class Menu {
                             newv.setVisible(true);
                 break;
                 case 12:
+                            ConvolucionFinita.main(args);
                 break;
                 default:    System.out.println("Teclea una opcion valida");
                 break;
