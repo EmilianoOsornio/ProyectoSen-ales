@@ -20,6 +20,9 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import static Ventanas.InicioGrabar.data;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 /**
  *
  * @author Emiliano
@@ -99,15 +102,26 @@ public class JFrameVentana extends javax.swing.JFrame {
         DefaultCategoryDataset Datos7 = new DefaultCategoryDataset();
         DefaultCategoryDataset Datos8 = new DefaultCategoryDataset();
         
-        //Botones
-        JButton zoomin,zoomout;
         
-        zoomin = new JButton("+");
-        zoomin.setBounds(0, 0, 100, 30);
+        JButton update;
+        update = new JButton("Zoom");
+        update.setBounds(0, 0, 100, 30);
         
-        zoomout = new JButton("-");
-        zoomout.setBounds(0, 0, 100, 30);
+        JTextField zoomtf,zoomtf2;
+        JLabel zooml,zooml2;
+                
+        zoomtf= new JTextField("Superior");
+        zoomtf.setBounds(0,0,200,30);
+
+        zoomtf2= new JTextField("Inferior");
+        zoomtf2.setBounds(0,0,200,30);
         
+        zooml= new JLabel("Superior");
+        zoomtf.setBounds(0,0,150,30);
+
+        zooml2= new JLabel("Inferior");
+        zoomtf.setBounds(200,0,150,30);
+
 
         double[] data;
         data = Ventanas.InicioGrabar.data;
@@ -202,11 +216,11 @@ public class JFrameVentana extends javax.swing.JFrame {
         
         //Acciones de los botones
         
-        zoomin.addActionListener(new ActionListener() {
+        update.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                low=low+0.2;
-                high=high-0.2;
+                high=Double.parseDouble(zoomtf.getText());
+                low=Double.parseDouble(zoomtf2.getText());
                 categoryPlot.getRangeAxis().setRange(low, high);
                 categoryPlot2.getRangeAxis().setRange(low, high);
                 categoryPlot3.getRangeAxis().setRange(low, high);
@@ -216,25 +230,7 @@ public class JFrameVentana extends javax.swing.JFrame {
                 categoryPlot7.getRangeAxis().setRange(low, high);
                 categoryPlot8.getRangeAxis().setRange(low, high);
             }
-        });
-        
-        zoomout.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                low=low-0.2;
-                high=high+0.2;
-                categoryPlot.getRangeAxis().setRange(low, high);
-                categoryPlot2.getRangeAxis().setRange(low, high);
-                categoryPlot3.getRangeAxis().setRange(low, high);
-                categoryPlot4.getRangeAxis().setRange(low, high);
-                categoryPlot5.getRangeAxis().setRange(low, high);
-                categoryPlot6.getRangeAxis().setRange(low, high);
-                categoryPlot7.getRangeAxis().setRange(low, high);
-                categoryPlot8.getRangeAxis().setRange(low, high);
-            }
-        });
-        
-        
+        });        
         
         ChartPanel Panel = new ChartPanel(grafica);
         Panel.zoomOutBoth(500, 500);
@@ -261,12 +257,15 @@ public class JFrameVentana extends javax.swing.JFrame {
         Panel8.zoomOutBoth(500, 500);
         
         JPanel PanelControl= new JPanel();
-        PanelControl.add(zoomin);
-        PanelControl.add(zoomout);
+        PanelControl.add(zoomtf);
+        PanelControl.add(zooml);
+        PanelControl.add(zoomtf2);
+        PanelControl.add(zooml2);
+        PanelControl.add(update);
+        
         
         
         JFrame Ventana = new JFrame("Audio Entrada");
-        //Ventana.getContentPane().add(Panel);
         Ventana.getContentPane().add(Panel);
         Ventana.getContentPane().add(Panel2);
         Ventana.getContentPane().add(Panel3);
@@ -295,18 +294,28 @@ public class JFrameVentana extends javax.swing.JFrame {
         DefaultCategoryDataset Datos7 = new DefaultCategoryDataset();
         DefaultCategoryDataset Datos8 = new DefaultCategoryDataset();
         
-        //Botones
-        JButton zoomin,zoomout;
+        JButton update;
+        update = new JButton("Zoom");
+        update.setBounds(0, 0, 100, 30);
         
-        zoomin = new JButton("+");
-        zoomin.setBounds(0, 0, 100, 30);
+        JTextField zoomtf,zoomtf2;
+        JLabel zooml,zooml2;
+                
+        zoomtf= new JTextField("Superior");
+        zoomtf.setBounds(0,0,200,30);
+
+        zoomtf2= new JTextField("Inferior");
+        zoomtf2.setBounds(0,0,200,30);
         
-        zoomout = new JButton("-");
-        zoomout.setBounds(0, 0, 100, 30);
+        zooml= new JLabel("Superior");
+        zoomtf.setBounds(0,0,150,30);
+
+        zooml2= new JLabel("Inferior");
+        zoomtf.setBounds(200,0,150,30);
         
 
         double[] data;
-        data = Ventanas.InicioGrabar.data;
+        data = Ventanas.InicioGrabar.datan;
         System.out.println(data.length);
         Datos.clear();
         Datos2.clear();
@@ -400,11 +409,11 @@ public class JFrameVentana extends javax.swing.JFrame {
         
         //Acciones de los botones
         
-        zoomin.addActionListener(new ActionListener() {
+        update.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                low=low+0.2;
-                high=high-0.2;
+                high=Double.parseDouble(zoomtf.getText());
+                low=Double.parseDouble(zoomtf2.getText());
                 categoryPlot.getRangeAxis().setRange(low, high);
                 categoryPlot2.getRangeAxis().setRange(low, high);
                 categoryPlot3.getRangeAxis().setRange(low, high);
@@ -414,26 +423,8 @@ public class JFrameVentana extends javax.swing.JFrame {
                 categoryPlot7.getRangeAxis().setRange(low, high);
                 categoryPlot8.getRangeAxis().setRange(low, high);
             }
-        });
-        
-        zoomout.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                low=low-0.2;
-                high=high+0.2;
-                categoryPlot.getRangeAxis().setRange(low, high);
-                categoryPlot2.getRangeAxis().setRange(low, high);
-                categoryPlot3.getRangeAxis().setRange(low, high);
-                categoryPlot4.getRangeAxis().setRange(low, high);
-                categoryPlot5.getRangeAxis().setRange(low, high);
-                categoryPlot6.getRangeAxis().setRange(low, high);
-                categoryPlot7.getRangeAxis().setRange(low, high);
-                categoryPlot8.getRangeAxis().setRange(low, high);
-            }
-        });
-        
-        
-        
+        });   
+                
         ChartPanel Panel = new ChartPanel(grafica);
         Panel.zoomOutBoth(500, 500);
         
@@ -459,8 +450,11 @@ public class JFrameVentana extends javax.swing.JFrame {
         Panel8.zoomOutBoth(500, 500);
         
         JPanel PanelControl= new JPanel();
-        PanelControl.add(zoomin);
-        PanelControl.add(zoomout);
+        PanelControl.add(zoomtf);
+        PanelControl.add(zooml);
+        PanelControl.add(zoomtf2);
+        PanelControl.add(zooml2);
+        PanelControl.add(update);
         
         
         JFrame Ventana = new JFrame("Audio Salida");

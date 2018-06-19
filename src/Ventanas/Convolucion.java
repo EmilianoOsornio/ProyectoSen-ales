@@ -8,6 +8,7 @@ package Ventanas;
 import java.util.Random;
 import java.util.Scanner;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import static paquete.ConvolucionFinita.getArray;
 import static paquete.ConvolucionFinita.llenaMatrizGeneral;
@@ -33,8 +34,7 @@ public class Convolucion extends javax.swing.JFrame {
         salida = "<html>";
         initComponents();
         this.setVisible(true);
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
     }
 
@@ -57,6 +57,7 @@ public class Convolucion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         textoSalida = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelConvo.setBackground(new java.awt.Color(48, 63, 159));
         panelConvo.setSize(new java.awt.Dimension(683, 552));
@@ -84,7 +85,7 @@ public class Convolucion extends javax.swing.JFrame {
 
         textoSalida.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         textoSalida.setForeground(new java.awt.Color(255, 255, 255));
-        textoSalida.setText("Presiona el botón de convolución");
+        textoSalida.setText("Ingresa los arreglos separando por comas (Ej. 1,23,45)");
         textoSalida.setAutoscrolls(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -170,11 +171,11 @@ public class Convolucion extends javax.swing.JFrame {
         
         //Añadir a los arreglos
         
-        String[] arreglo1String = input1.split("");
-        String[] arreglo2String = input2.split("");
+        String[] arreglo1String = input1.split(",");
+        String[] arreglo2String = input2.split(",");
         
-        double[] arreglo1 = new double[input1.length()];
-        double[] arreglo2 = new double[input2.length()];
+        double[] arreglo1 = new double[arreglo1String.length];
+        double[] arreglo2 = new double[arreglo2String.length];
         
                 
             //Input 1

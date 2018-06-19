@@ -18,7 +18,8 @@ public class Acerca extends javax.swing.JFrame {
      */
     public Acerca() {
         initComponents();
-                this.setVisible(true);
+        this.setVisible(true);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
     }
 

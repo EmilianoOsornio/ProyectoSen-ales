@@ -215,6 +215,11 @@ public class Diezmacion extends javax.swing.JFrame {
     private void desplazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desplazarActionPerformed
             int k =Integer.parseInt(tiempoK.getText());
             datan=ob.diezmacion(data,k);
+            if (datan == null) {
+            System.out.println("PARA REPRODUCIR TIENES QUE REALIZAR UNA OPERACION");
+            } else {
+                rds.play("NuevaGrabacion.wav");
+            }
     }//GEN-LAST:event_desplazarActionPerformed
 
     private void reproducirEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reproducirEntradaActionPerformed
