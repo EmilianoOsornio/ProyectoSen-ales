@@ -36,14 +36,15 @@ public class OperacionesBasicas {
     
     public double[] desplazamiento(double[] data, int s, int tiempoGrabacion){
         double copyData[];
-        System.out.println("TIEMPO G "+tiempoGrabacion);
+        //System.out.println("TIEMPO G "+tiempoGrabacion);
         System.out.println("S "+s);
         if(tiempoGrabacion>= s){
             int muestrasporSeg = data.length/tiempoGrabacion;
             int tamMuestras = muestrasporSeg*Math.abs(s);
-            System.out.println("TAM MUESTRAS "+data.length);
+            tamMuestras = s;
+            System.out.println("TAMANIO MUESTRAS "+data.length);
             System.out.println("MUESTRAS POR SEGUNDO "+muestrasporSeg);
-            System.out.println("TAM NUEVA MUESTRA "+tamMuestras);
+            System.out.println("TAMANIO NUEVA MUESTRA "+tamMuestras);
             if(s>0){
                 copyData = new double[tamMuestras];
                 for (int i = 0; i < tamMuestras; i++) {

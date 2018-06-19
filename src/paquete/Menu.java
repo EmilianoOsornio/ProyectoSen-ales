@@ -70,7 +70,7 @@ public class Menu {
                             datan=ob.atenuacion(data,k);
                             setDatan(datan);
                 break;
-                case 3:     System.out.println("Ingresa los segundos a desplazar");
+                case 3:     System.out.println("Ingresa el numero de muestras a desplazar");
                             k=sc.nextInt();
                             datan=ob.desplazamiento(data,k,segundos);
                             setDatan(datan);
