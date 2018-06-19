@@ -5,6 +5,10 @@
  */
 package Ventanas;
 
+import static Ventanas.InicioGrabar.data;
+import static Ventanas.InicioGrabar.datan;
+import static Ventanas.InicioGrabar.ob;
+import static Ventanas.InicioGrabar.segundos;
 import javax.swing.JFrame;
 import paquete.JFrameVentana;
 import paquete.OperacionesBasicas;
@@ -16,17 +20,13 @@ import paquete.ReadSound;
  */
 public class Desplazar extends javax.swing.JFrame {
 
-    OperacionesBasicas ob = new OperacionesBasicas(); //tiempoGrabacion = rcs.
-    public double[] datan = null;
-    public double[] data = null;
     ReadSound rds;
-    int segundos;
 
     public Desplazar(double[] data, int segundos) {
         initComponents();
         this.setVisible(true);
-        this.data = data;
-        this.segundos =segundos;
+        Ventanas.InicioGrabar.data = data;
+        Ventanas.InicioGrabar.segundos = segundos;
     }
 
     /**
@@ -164,7 +164,7 @@ public class Desplazar extends javax.swing.JFrame {
             .addComponent(jSeparator1)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel12)
@@ -201,7 +201,7 @@ public class Desplazar extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

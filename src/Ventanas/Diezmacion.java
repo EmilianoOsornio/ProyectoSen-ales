@@ -1,5 +1,8 @@
 package Ventanas;
 
+import static Ventanas.InicioGrabar.data;
+import static Ventanas.InicioGrabar.datan;
+import static Ventanas.InicioGrabar.ob;
 import javax.swing.JFrame;
 import paquete.JFrameVentana;
 import paquete.OperacionesBasicas;
@@ -11,16 +14,14 @@ import paquete.ReadSound;
  */
 public class Diezmacion extends javax.swing.JFrame {
 
-    OperacionesBasicas ob = new OperacionesBasicas(); //tiempoGrabacion = rcs.
-    public double[] datan = null;
-    public double[] data = null;
     ReadSound rds;
     int segundos;
     
     public Diezmacion(double[] data) {
         initComponents();
         this.setVisible(true);
-        this.data =data;
+        Ventanas.InicioGrabar.data =data;
+        ob= new OperacionesBasicas();
     }
 
     /**
@@ -212,7 +213,7 @@ public class Diezmacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void desplazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desplazarActionPerformed
-        int k =Integer.parseInt(tiempoK.getText());
+            int k =Integer.parseInt(tiempoK.getText());
             datan=ob.diezmacion(data,k);
     }//GEN-LAST:event_desplazarActionPerformed
 

@@ -6,10 +6,8 @@
 package Ventanas;
 
 import javax.swing.JFrame;
-import paquete.Acerca;
-import paquete.Convolucion;
-import paquete.JFrameVentana;
-import paquete.Menu;
+import javax.swing.JOptionPane;
+import paquete.JFrameVentana;;
 import paquete.OperacionesBasicas;
 import paquete.ReadSound;
 import paquete.RecordSound;
@@ -20,14 +18,34 @@ import paquete.RecordSound;
  */
 public class InicioGrabar extends javax.swing.JFrame {
 
-    public double[] data, datan;
+    public static double[] data, datan;
     public static int segundos;
+    public static OperacionesBasicas ob;
+
+    
     RecordSound rcs;
     ReadSound rds;
 
     public InicioGrabar() {
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ob= new OperacionesBasicas();
+        
+        //Inhabilitar botones
+        acercaBoton.setEnabled(false);
+        amplificacionBoton.setEnabled(false);
+        convolucionBoton.setEnabled(false);
+        desplazamientoBoton.setEnabled(false);
+        diezmacionBoton.setEnabled(false);
+        graficarBoton.setEnabled(false);
+        interpolacionBoton.setEnabled(false);
+        reflexionBoton.setEnabled(false);
+        reproducirEntrada.setEnabled(false);
+        reproducirSalida.setEnabled(false);
+       
+        
+        
+
     }
 
     /**
@@ -514,7 +532,7 @@ public class InicioGrabar extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(180, 180, 180))))
+                        .addGap(168, 168, 168))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(reproducirEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -558,37 +576,50 @@ public class InicioGrabar extends javax.swing.JFrame {
 
     private void amplificacionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amplificacionBotonActionPerformed
         AmplificarAtenuar v1 = new AmplificarAtenuar(data);
-        datan = v1.datan;
         setDatan(datan);
-
     }//GEN-LAST:event_amplificacionBotonActionPerformed
 
     private void reflexionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reflexionBotonActionPerformed
-        Reflejo v1 = new Reflejo(data);
-        datan = v1.datan;
+        Reflejo r1 = new Reflejo(data);
         setDatan(datan);        
     }//GEN-LAST:event_reflexionBotonActionPerformed
 
     private void diezmacionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diezmacionBotonActionPerformed
         Diezmacion v1 = new Diezmacion(data);
-        datan = v1.datan;
-        setDatan(datan);   
-    }//GEN-LAST:event_diezmacionBotonActionPerformed
+        setDatan(datan);      }//GEN-LAST:event_diezmacionBotonActionPerformed
 
     private void botonDeGrabadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDeGrabadoActionPerformed
 
         rcs = new RecordSound();
         rds = new ReadSound();
         OperacionesBasicas ob = new OperacionesBasicas(); //tiempoGrabacion = rcs.
-        segundos = Integer.parseInt(tiempoPorGrabar.getText());
-        data = rcs.mainRecord(segundos);
-        setData(data);
+        
+        try{
+            segundos = Integer.parseInt(tiempoPorGrabar.getText());
+            data=rcs.mainRecord(segundos);
 
+                    //Habilitar botones
+                    acercaBoton.setEnabled(true);
+                    amplificacionBoton.setEnabled(true);
+                    convolucionBoton.setEnabled(true);
+                    desplazamientoBoton.setEnabled(true);
+                    diezmacionBoton.setEnabled(true);
+                    graficarBoton.setEnabled(true);
+                    interpolacionBoton.setEnabled(true);
+                    reflexionBoton.setEnabled(true);
+                    reproducirEntrada.setEnabled(true);
+                    reproducirSalida.setEnabled(true);   
+                    JOptionPane.showMessageDialog(null, "Se grabó durante " + segundos + " segundos");
+        }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Debes ingresar un número");
+        };
+        
+        
+       
     }//GEN-LAST:event_botonDeGrabadoActionPerformed
 
     private void interpolacionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_interpolacionBotonActionPerformed
         Interpolacion v1 = new Interpolacion(data);
-        datan = v1.datan;
         setDatan(datan);  
     }//GEN-LAST:event_interpolacionBotonActionPerformed
 
@@ -612,7 +643,6 @@ public class InicioGrabar extends javax.swing.JFrame {
 
     private void desplazamientoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desplazamientoBotonActionPerformed
         Desplazar v1 = new Desplazar(data, segundos);
-        datan = v1.datan;
         setDatan(datan);
     }//GEN-LAST:event_desplazamientoBotonActionPerformed
 
@@ -655,30 +685,30 @@ public class InicioGrabar extends javax.swing.JFrame {
         });
     }
 
-    public static void setData(double[] data) {
-        Menu.data = data;
+    public static void setData(double[] data2) {
+        data = data2;
     }
 
     public static double[] getData() {
-        return Menu.data;
+        return data;
     }
 
-    public static void setDatan(double[] datan) {
+    public static void setDatan(double[] datan2) {
         System.out.println("Recibido");
 
-        datan = datan;
+        datan = datan2;
     }
 
     public static double[] getDatan() {
-        return Menu.datan;
+        return datan;
     }
 
-    public static void setSeg(int segundos) {
-        Menu.segundos = segundos;
+    public static void setSeg(int segundos2) {
+        segundos = segundos2;
     }
 
     public static int getSeg() {
-        return Menu.segundos;
+        return segundos;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

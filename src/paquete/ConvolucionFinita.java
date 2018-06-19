@@ -22,6 +22,7 @@ public class ConvolucionFinita {
         }System.out.println("El origen: Valor["+(origen+1)+"]="+arreglo[origen]);
         return arreglo;
     }
+   
     public static void llenaMatrizGeneral(double[] valores, double[][] matriz, int tam){
         for (int i=0; i < tam; i++) {
             for (int j = 0; j < tam; j++) {
@@ -69,9 +70,11 @@ public class ConvolucionFinita {
         System.out.println("El origen final: Valor["+(origenFinal+1)+"]="+aux[origenFinal][0]);
         
     }
+   
     public static void main(String[]args){
         double[] arreglo1 = getArray();
         double[] arreglo2 = getArray();
+        
         int tam = arreglo1.length + arreglo2.length -1;
         double[][] matrizGeneral = new double[tam][tam];
         double[][] matrizUnitaria = new double[tam][1];

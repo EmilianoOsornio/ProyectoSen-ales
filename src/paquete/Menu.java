@@ -61,6 +61,9 @@ public class Menu {
                             k=sc.nextInt();
                             datan=ob.amplificacion(data,k);
                             setDatan(datan);
+                            
+                            System.out.println("-> Data: " + data + " ob: " + ob);
+                                    
                 break;
                 case 2:     System.out.println("Ingresa el factor k");
                             k=sc.nextInt();

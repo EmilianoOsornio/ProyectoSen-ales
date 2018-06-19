@@ -1,6 +1,7 @@
 
 package paquete;
 
+import javax.swing.JOptionPane;
 import paquete.ReadSound;
 
 /**
@@ -17,6 +18,7 @@ public class OperacionesBasicas {
             data2[i]=data[i]*k;
         }
         System.out.println("SE AMPLIFICÓ EL SONIDO");
+        JOptionPane.showMessageDialog(null, "Se amplificó el sonido");
         nuevaGrabacion(data2);
         return data2;
     }
@@ -27,6 +29,7 @@ public class OperacionesBasicas {
             data2[i]=data[i]/k;
         }
         System.out.println("SE ATENUÓ EL SONIDO");
+        JOptionPane.showMessageDialog(null, "Se atenuó el sonido");
         nuevaGrabacion(data2);
         return data2;
     }
@@ -71,6 +74,7 @@ public class OperacionesBasicas {
             data2[(data.length-1)-i]=data[i];
         }        
         System.out.println("SE REFLEJÓ EL SONIDO");
+        JOptionPane.showMessageDialog(null, "Se reflejó el sonido");
         nuevaGrabacion(data2);
         return data2;
     }
@@ -100,6 +104,7 @@ public class OperacionesBasicas {
             data2[i]=data[j];
         }
         System.out.println("SE APLICÓ INTERPOLACIÓN A CERO");
+        JOptionPane.showMessageDialog(null, "Se amplificó interpolación a cero");
         System.out.println("Tamaño original:" + data.length);
         System.out.println("Tamaño nuevo:" + data2.length);
         nuevaGrabacion(data2);
@@ -118,6 +123,7 @@ public class OperacionesBasicas {
             cont=0;
         }
         System.out.println("SE APLICÓ INTERPOLACIÓN A ESCALÓN");
+        JOptionPane.showMessageDialog(null, "Se amplificó interpolación a escalón");
         System.out.println("Tamaño original:" + data.length);
         System.out.println("Tamaño nuevo:" + data2.length);
         nuevaGrabacion(data2);

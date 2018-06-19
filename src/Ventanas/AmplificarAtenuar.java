@@ -5,6 +5,9 @@
  */
 package Ventanas;
 
+import static Ventanas.InicioGrabar.data;
+import static Ventanas.InicioGrabar.datan;
+import static Ventanas.InicioGrabar.ob;
 import javax.swing.JFrame;
 import paquete.JFrameVentana;
 import paquete.OperacionesBasicas;
@@ -16,15 +19,12 @@ import paquete.ReadSound;
  */
 public class AmplificarAtenuar extends javax.swing.JFrame {
 
-    OperacionesBasicas ob = new OperacionesBasicas(); //tiempoGrabacion = rcs.
-    public double[] datan = null;
-    public double[] data = null;
     ReadSound rds;
 
     public AmplificarAtenuar(double[] data) {
         initComponents();
         this.setVisible(true);
-        this.data = data;
+        Ventanas.InicioGrabar.data = data;
     }
 
     /**
@@ -252,7 +252,9 @@ public class AmplificarAtenuar extends javax.swing.JFrame {
 
     private void amplificarSonidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amplificarSonidoActionPerformed
         int k = Integer.parseInt(amplificarK.getText());
+        
         datan = ob.amplificacion(data, k);
+        
         if (datan == null) {
             System.out.println("PARA REPRODUCIR TIENES QUE REALIZAR UNA OPERACION");
         } else {

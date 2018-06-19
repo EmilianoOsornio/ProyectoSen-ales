@@ -5,6 +5,9 @@
  */
 package Ventanas;
 
+import static Ventanas.InicioGrabar.data;
+import static Ventanas.InicioGrabar.datan;
+import static Ventanas.InicioGrabar.ob;
 import javax.swing.JFrame;
 import paquete.JFrameVentana;
 import static paquete.Menu.setDatan;
@@ -17,9 +20,7 @@ import paquete.ReadSound;
  */
 public class Reflejo extends javax.swing.JFrame {
 
-    OperacionesBasicas ob = new OperacionesBasicas(); //tiempoGrabacion = rcs.
-    public double[] datan = null;
-    public double[] data = null;
+
     ReadSound rds;
     int segundos;
     
@@ -27,7 +28,7 @@ public class Reflejo extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
 
-        this.data = data;
+        Ventanas.InicioGrabar.data = data;
     }
 
 

@@ -19,6 +19,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import static Ventanas.InicioGrabar.data;
 /**
  *
  * @author Emiliano
@@ -31,8 +32,8 @@ public class JFrameVentana extends javax.swing.JFrame {
     
     public JFrameVentana() {
         initComponents();
-        //System.out.println(Menu.getData().length);
-        //System.out.println(Menu.getDatan().length);
+        //System.out.println(Ventanas.InicioGrabar.data;.getData().length);
+        //System.out.println(Ventanas.InicioGrabar.data;.getDatan().length);
     }
 
     /**
@@ -47,7 +48,6 @@ public class JFrameVentana extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Graficar Entrada");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +110,7 @@ public class JFrameVentana extends javax.swing.JFrame {
         
 
         double[] data;
-        data=Menu.getData();
+        data = Ventanas.InicioGrabar.data;
         System.out.println(data.length);
         Datos.clear();
         Datos2.clear();
@@ -306,7 +306,7 @@ public class JFrameVentana extends javax.swing.JFrame {
         
 
         double[] data;
-        data=Menu.getDatan();
+        data = Ventanas.InicioGrabar.data;
         System.out.println(data.length);
         Datos.clear();
         Datos2.clear();

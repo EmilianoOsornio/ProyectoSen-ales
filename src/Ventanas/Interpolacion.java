@@ -5,6 +5,9 @@
  */
 package Ventanas;
 
+import static Ventanas.InicioGrabar.data;
+import static Ventanas.InicioGrabar.datan;
+import static Ventanas.InicioGrabar.ob;
 import javax.swing.JFrame;
 import paquete.JFrameVentana;
 import paquete.OperacionesBasicas;
@@ -16,16 +19,13 @@ import paquete.ReadSound;
  */
 public class Interpolacion extends javax.swing.JFrame {
 
-    OperacionesBasicas ob = new OperacionesBasicas(); //tiempoGrabacion = rcs.
-    public double[] datan = null;
-    public double[] data = null;
     ReadSound rds;
     int segundos;
 
     public Interpolacion(double[] data) {
         initComponents();
         this.setVisible(true);
-        this.data = data;
+        Ventanas.InicioGrabar.data = data;
     }
 
     /**
